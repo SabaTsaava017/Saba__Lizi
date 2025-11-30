@@ -1,0 +1,178 @@
+/* --- Base Layout --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    background: #f8f3e9;
+    color: #6b4e2e;
+}
+
+/* --- Container --- */
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+}
+
+/* --- Left and Right Image Panels --- */
+.left-image,
+.right-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+/* აქ ჩასვით შენი სურათის ლინკი */
+.left-image {
+    background-image: url("WhatsApp Image 2025-11-30 at 19.25.46.jpeg");
+}
+
+.right-image {
+    background-image: url("WhatsApp Image 2025-11-30 at 19.25.46.jpeg");
+}
+
+/* --- Center Box --- */
+.center-box {
+    flex: 1;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 20px;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
+}
+
+.center-box h1 {
+    color: #8c6a3b;
+    margin-bottom: 10px;
+}
+
+.center-box .badge {
+    background: #8c6a3b;
+    color: white;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.event-details {
+    margin: 20px 0;
+}
+
+.detail {
+    margin-bottom: 10px;
+}
+
+.detail .label {
+    display: block;
+    font-weight: bold;
+}
+
+.desc {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px 0 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background: #8c6a3b;
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #7a5930;
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 2px solid #8c6a3b;
+    color: #8c6a3b;
+}
+
+.btn.ghost:hover {
+    background: #8c6a3b;
+    color: white;
+}
+
+/* --- Footer --- */
+.host {
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-image,
+    .right-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .center-box {
+        max-width: 90%;
+        margin: -100px auto 20px auto; /* overlap images a bit */
+    }
+}
+
+@media (max-width: 600px) {
+    .left-image,
+    .right-image {
+        height: 150px;
+    }
+
+    .center-box {
+        padding: 20px 15px;
+    }
+
+    .desc {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 10px 0 0 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .left-image,
+    .right-image {
+        height: 120px;
+    }
+
+    .center-box {
+        padding: 15px 10px;
+    }
+
+    .center-box h1 {
+        font-size: 1.3rem;
+    }
+
+    .desc {
+        font-size: 0.85rem;
+    }
+}
+
