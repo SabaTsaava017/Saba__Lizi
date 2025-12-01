@@ -1,7 +1,7 @@
 /* styles.css */
 /* ძირითადი ვარიანტები — აქ შეგიძლია გამოიყვანო შენი ფონური სურათის URL */
 :root{
-  --bg-url: url('./WhatsApp\ Image\ 2025-11-30\ at\ 19.25.46.jpeg'); /* შეცვალე აქ */
+   --bg-url: url("WhatsApp Image 2025-11-30 at 19.25.46.jpeg"); /* შეცვალე აქ */
   --accent: rgba(255,255,255,0.92);
   --accent-hover: rgba(255,255,255,0.25);
   --text-color: #111;
