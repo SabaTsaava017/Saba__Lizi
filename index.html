@@ -10,87 +10,13 @@
 <body>
 
   <main>
-    
     <section id="hero" class="page hero">
       <div class="hero-content"></div>
-
-      <!-- ღილაკი -->
-      <a id="openInvite" class="invite-btn" href="#">
+      <a class="invite-btn" href="details.html">
         მოსაწვევი
       </a>
     </section>
-
-    <!-- დეტალების გვერდი -->
-    <section id="details" class="page" aria-hidden="true">
-      <div class="details card" role="region" aria-labelledby="details-title">
-        <h1 id="details-title">მოსაწვევი — დეტალები</h1>
-
-        <p>
-          აქ ჩაწერე შენი ღონისძიების დეტალები: თარიღი, დრო, ადგილი და სხვა ინფორმაცია.
-        </p>
-
-        <p><strong>მაგალითი:</strong> 20 დეკემბერი, 2025 — 18:30, სასტუმრო „რადისი“.</p>
-
-        <a id="backBtn" class="back-link" href="#">
-          უკან
-        </a>
-      </div>
-    </section>
   </main>
-
-  <script>
-    // Hero-ს რეალური სიმაღლე ტელეფონებისთვის
-    function setHeroHeight() {
-      const hero = document.getElementById('hero');
-      const vh = window.innerHeight;
-      hero.style.height = `${vh}px`;
-    }
-
-    // პირველად გვერდის ჩატვირთვაზე
-    setHeroHeight();
-
-    // window resize-ზე
-    window.addEventListener('resize', setHeroHeight);
-
-    // გვერდებს შორის გადართვა
-    const openBtn = document.getElementById('openInvite');
-    const hero = document.getElementById('hero');
-    const details = document.getElementById('details');
-    const backBtn = document.getElementById('backBtn');
-
-    function showDetails() {
-      hero.style.display = 'none';
-      details.classList.add('visible');
-      details.setAttribute('aria-hidden', 'false');
-      history.replaceState(null, '', '#details');
-    }
-
-    function showHero() {
-      hero.style.display = '';
-      details.classList.remove('visible');
-      details.setAttribute('aria-hidden', 'true');
-      history.replaceState(null, '', '#');
-    }
-
-    if (location.hash === '#details') showDetails();
-
-    openBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      showDetails();
-    });
-
-    backBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      showHero();
-    });
-
-    openBtn.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Enter') {
-        ev.preventDefault();
-        showDetails();
-      }
-    });
-  </script>
 
 </body>
 </html>
