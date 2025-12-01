@@ -4,8 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>მოსაწვევი — მთავარი</title>
-
-  
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -61,10 +59,7 @@
       history.replaceState(null, '', '#');
     }
 
-    // გახსნა #details URL-ით
-    if (location.hash === '#details') {
-      showDetails();
-    }
+    if (location.hash === '#details') showDetails();
 
     openBtn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -76,7 +71,6 @@
       showHero();
     });
 
-    // Enter അമოს დაჭერა ღილაკზე
     openBtn.addEventListener('keydown', (ev) => {
       if (ev.key === 'Enter') {
         ev.preventDefault();
@@ -87,4 +81,3 @@
 
 </body>
 </html>
-

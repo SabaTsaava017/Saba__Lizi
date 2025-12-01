@@ -1,7 +1,5 @@
-/* styles.css */
-/* ძირითადი ვარიანტები — აქ შეგიძლია გამოიყვანო შენი ფონური სურათის URL */
 :root {
-  --bg-url: url("./WhatsApp\ Image\ 2025-11-30\ at\ 19.25.46.jpeg"); /* ჩაწერე აქ შენი ფოტო, მაგალითად bg.jpeg */
+  --bg-url: url("./WhatsApp\ Image\ 2025-11-30\ at\ 19.25.46.jpeg"); /* ჩაწერე აქ შენი ფოტო */
   --accent: rgba(255,255,255,0.92);
   --accent-hover: rgba(255,255,255,0.25);
   --text-color: #111;
@@ -17,13 +15,12 @@ body{
   color:var(--text-color);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  background:#000;
   line-height:1.45;
 }
 
 /* გვერდის სტრუქტურა */
 .page{
-  min-height:100dvh; /* უსაფრთხო სრული viewport სიმაღლისთვის მობილურებზე */
+  min-height:100dvh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -31,20 +28,20 @@ body{
   overflow:hidden;
 }
 
-/* Hero background — პირველ გვერდზე სრული ფოტო */
-.hero{
-  background-image:var(--bg-url);
-  background-size:cover;
-  background-position:center center;
-  width:100%;
-  height:100%;
-  position:relative;
+/* Hero background — პირველი გვერდი */
+#hero {
+  height: 100vh;             /* სრული ეკრანი */
+  overflow: hidden;          /* Scroll–ის შეზღუდვა */
+  background-image: var(--bg-url);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   display:flex;
   align-items:center;
   justify-content:center;
+  position:relative;
 }
 
-/* მსუბუქი overlay, რომ ტექსტი უკეთ წიკვეთდეს */
 .hero::before{
   content:'';
   position:absolute;
@@ -53,7 +50,6 @@ body{
   pointer-events:none;
 }
 
-/* ვიზუალური კონტენტისთვის რბილი გარე ზომა (pointer-events:none რათა ღილაკი აირჩიოს კლიკს) */
 .hero-content{
   width:100%;
   max-width:var(--max-width);
@@ -64,7 +60,6 @@ body{
   pointer-events:none;
 }
 
-/* ღილაკი — სინამდვილეში div ან a ელემენტი (.invite-btn) */
 .invite-btn{
   position:absolute;
   left:50%;
@@ -84,10 +79,9 @@ body{
   max-width:90%;
   text-align:center;
   z-index:4;
-  pointer-events:auto; /* ღილაკი შეხედულებად იყოს კლიკადი */
+  pointer-events:auto;
 }
 
-/* ჰოვერი — გამოაჩენს გამჭირვალეობის ეფექტს და პატარა გადაადგილებას */
 .invite-btn:hover,
 .invite-btn:focus{
   background:var(--accent-hover);
@@ -96,15 +90,20 @@ body{
   outline: none;
 }
 
-/* ამპრესიული პრესის ეფექტი */
-.invite-btn:active{ transform:translateX(-50%) translateY(-1px) scale(.997) }
+.invite-btn:active{ 
+  transform:translateX(-50%) translateY(-1px) scale(.997);
+}
 
-/* დეტალების სექცია (მეორე გვერდი), პირველადი კარდის სტილი */
+/* დეტალების სექცია */
+#details {
+  overflow-y: auto;          /* საჭიროების შემთხვევაში Scroll */
+}
+
 .details{
   padding:48px 20px;
   max-width:900px;
   margin:0 auto;
-  display:none; /* ნაგულისხმევად დამალულია */
+  display:none;
   animation:fadeIn .28s ease;
 }
 
@@ -120,7 +119,6 @@ body{
 h1{ font-size:clamp(1.4rem, 2.6vw, 2rem); margin-bottom:10px }
 p{ color:#333; margin-top:8px }
 
-/* უკან დაბრუნების ღილაკი */
 .back-link{
   display:inline-block;
   margin-top:18px;
@@ -131,26 +129,21 @@ p{ color:#333; margin-top:8px }
   color:#fff;
 }
 
-/* მცირე ანიმაცია */
 @keyframes fadeIn{
   from{ opacity:0; transform:translateY(8px) }
   to{ opacity:1; transform:none }
 }
 
-/* აქვსრზიურება მობილურებისთვის — ღილაკი ოდნავ ზევით რომ არ დაფაროს სურათი */
 @media (max-width:420px){
   .invite-btn{ bottom:12%; padding:12px 22px; font-size:1rem; border-radius:12px; }
 }
 
-/* დიდი ეკრანებისთვის — ღილაკი ოდნავ მაღლა */
 @media (min-width:900px){
   .invite-btn{ bottom:18% }
 }
 
-/* წინა-დამატებითი წვრილმანები */
 :focus{ outline:2px solid rgba(0,0,0,0.08); outline-offset:2px; }
 
-/* თუ მომხმარებელს უპირატესობა აქვს მიმოკლებულ ანიმაციაზე */
 @media (prefers-reduced-motion: reduce){
   .invite-btn, .details, .hero::before { transition:none; animation:none; }
 }
