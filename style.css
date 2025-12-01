@@ -1,178 +1,156 @@
-/* --- Base Layout --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* styles.css */
+/* ძირითადი ვარიანტები — აქ შეგიძლია გამოიყვანო შენი ფონური სურათის URL */
+:root{
+  --bg-url: url('./WhatsApp\ Image\ 2025-11-30\ at\ 19.25.46.jpeg'); /* შეცვალე აქ */
+  --accent: rgba(255,255,255,0.92);
+  --accent-hover: rgba(255,255,255,0.25);
+  --text-color: #111;
+  --radius: 14px;
+  --max-width: 1200px;
 }
 
-body {
-    font-family: "Helvetica Neue", sans-serif;
-    background: #f8f3e9;
-    color: #6b4e2e;
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Helvetica, Arial;
+  color:var(--text-color);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:#000;
+  line-height:1.45;
 }
 
-/* --- Container --- */
-.container {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100%;
+/* გვერდის სტრუქტურა */
+.page{
+  min-height:100dvh; /* უსაფრთხო სრული viewport სიმაღლისთვის მობილურებზე */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
 }
 
-/* --- Left and Right Image Panels --- */
-.left-image,
-.right-image {
-    flex: 1;
-    background-size: cover;
-    background-position: center;
+/* Hero background — პირველ გვერდზე სრული ფოტო */
+.hero{
+  background-image:var(--bg-url);
+  background-size:cover;
+  background-position:center center;
+  width:100%;
+  height:100%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-/* აქ ჩასვით შენი სურათის ლინკი */
-.left-image {
-    background-image: url("WhatsApp Image 2025-11-30 at 19.25.46.jpeg");
+/* მსუბუქი overlay, რომ ტექსტი უკეთ წიკვეთდეს */
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.18));
+  pointer-events:none;
 }
 
-.right-image {
-    background-image: url("WhatsApp Image 2025-11-30 at 19.25.46.jpeg");
+/* ვიზუალური კონტენტისთვის რბილი გარე ზომა (pointer-events:none რათა ღილაკი აირჩიოს კლიკს) */
+.hero-content{
+  width:100%;
+  max-width:var(--max-width);
+  padding:24px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  pointer-events:none;
 }
 
-/* --- Center Box --- */
-.center-box {
-    flex: 1;
-    max-width: 400px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px 20px;
-    border-radius: 20px;
-    margin: auto;
-    text-align: center;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
+/* ღილაკი — სინამდვილეში div ან a ელემენტი (.invite-btn) */
+.invite-btn{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:10%;
+  padding:14px 28px;
+  border-radius:var(--radius);
+  background:var(--accent);
+  backdrop-filter: blur(6px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  font-weight:600;
+  letter-spacing:0.4px;
+  cursor:pointer;
+  text-decoration:none;
+  color:var(--text-color);
+  transition:background .25s ease, transform .12s ease, opacity .25s ease, color .18s ease;
+  max-width:90%;
+  text-align:center;
+  z-index:4;
+  pointer-events:auto; /* ღილაკი შეხედულებად იყოს კლიკადი */
 }
 
-.center-box h1 {
-    color: #8c6a3b;
-    margin-bottom: 10px;
+/* ჰოვერი — გამოაჩენს გამჭირვალეობის ეფექტს და პატარა გადაადგილებას */
+.invite-btn:hover,
+.invite-btn:focus{
+  background:var(--accent-hover);
+  transform:translateX(-50%) translateY(-3px);
+  color:#fff;
+  outline: none;
 }
 
-.center-box .badge {
-    background: #8c6a3b;
-    color: white;
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+/* ამპრესიული პრესის ეფექტი */
+.invite-btn:active{ transform:translateX(-50%) translateY(-1px) scale(.997) }
+
+/* დეტალების სექცია (მეორე გვერდი), პირველადი კარდის სტილი */
+.details{
+  padding:48px 20px;
+  max-width:900px;
+  margin:0 auto;
+  display:none; /* ნაგულისხმევად დამალულია */
+  animation:fadeIn .28s ease;
 }
 
-.event-details {
-    margin: 20px 0;
+.details.visible{ display:block; }
+
+.card{
+  background:linear-gradient(180deg,#fff,#fbfbfb);
+  border-radius:14px;
+  box-shadow:0 8px 30px rgba(12,20,30,0.08);
+  padding:28px;
 }
 
-.detail {
-    margin-bottom: 10px;
+h1{ font-size:clamp(1.4rem, 2.6vw, 2rem); margin-bottom:10px }
+p{ color:#333; margin-top:8px }
+
+/* უკან დაბრუნების ღილაკი */
+.back-link{
+  display:inline-block;
+  margin-top:18px;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  background:#111;
+  color:#fff;
 }
 
-.detail .label {
-    display: block;
-    font-weight: bold;
+/* მცირე ანიმაცია */
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(8px) }
+  to{ opacity:1; transform:none }
 }
 
-.desc {
-    margin-top: 15px;
-    font-size: 0.95rem;
-    line-height: 1.4;
+/* აქვსრზიურება მობილურებისთვის — ღილაკი ოდნავ ზევით რომ არ დაფაროს სურათი */
+@media (max-width:420px){
+  .invite-btn{ bottom:12%; padding:12px 22px; font-size:1rem; border-radius:12px; }
 }
 
-/* --- Buttons --- */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px 5px 0 5px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.2s ease;
+/* დიდი ეკრანებისთვის — ღილაკი ოდნავ მაღლა */
+@media (min-width:900px){
+  .invite-btn{ bottom:18% }
 }
 
-.btn.primary {
-    background: #8c6a3b;
-    color: white;
+/* წინა-დამატებითი წვრილმანები */
+:focus{ outline:2px solid rgba(0,0,0,0.08); outline-offset:2px; }
+
+/* თუ მომხმარებელს უპირატესობა აქვს მიმოკლებულ ანიმაციაზე */
+@media (prefers-reduced-motion: reduce){
+  .invite-btn, .details, .hero::before { transition:none; animation:none; }
 }
-
-.btn.primary:hover {
-    background: #7a5930;
-}
-
-.btn.ghost {
-    background: transparent;
-    border: 2px solid #8c6a3b;
-    color: #8c6a3b;
-}
-
-.btn.ghost:hover {
-    background: #8c6a3b;
-    color: white;
-}
-
-/* --- Footer --- */
-.host {
-    margin-top: 15px;
-    font-size: 0.85rem;
-}
-
-/* --- Media Queries for Responsiveness --- */
-@media (max-width: 1024px) {
-    .container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .left-image,
-    .right-image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .center-box {
-        max-width: 90%;
-        margin: -100px auto 20px auto; /* overlap images a bit */
-    }
-}
-
-@media (max-width: 600px) {
-    .left-image,
-    .right-image {
-        height: 150px;
-    }
-
-    .center-box {
-        padding: 20px 15px;
-    }
-
-    .desc {
-        font-size: 0.9rem;
-    }
-
-    .btn {
-        width: 100%;
-        margin: 10px 0 0 0;
-    }
-}
-
-@media (max-width: 400px) {
-    .left-image,
-    .right-image {
-        height: 120px;
-    }
-
-    .center-box {
-        padding: 15px 10px;
-    }
-
-    .center-box h1 {
-        font-size: 1.3rem;
-    }
-
-    .desc {
-        font-size: 0.85rem;
-    }
-}
-
