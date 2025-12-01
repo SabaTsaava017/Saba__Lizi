@@ -23,7 +23,7 @@ body{
 
 /* გვერდის სტრუქტურა */
 .page{
-  min-height:100dvh;
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -31,9 +31,9 @@ body{
   overflow:hidden;
 }
 
-/* Hero background — პირველი გვერდი */
+/* Hero background */
 #hero {
-  height: 100dvh;
+  height: 100px; /* JS შეცვლის რეალურ height */
   overflow: hidden;
   background-image: var(--bg-url);
   background-size: cover;
@@ -100,7 +100,7 @@ body{
 /* დეტალების სექცია */
 #details {
   overflow-y: auto; /* Scroll details-ზე */
-  height: 100dvh;
+  height: 100vh;
 }
 
 .details{

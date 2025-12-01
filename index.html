@@ -15,7 +15,7 @@
       <div class="hero-content"></div>
 
       <!-- ღილაკი -->
-      <a id="openInvite" class="invite-btn" href="details.html">
+      <a id="openInvite" class="invite-btn" href="#">
         მოსაწვევი
       </a>
     </section>
@@ -38,8 +38,21 @@
     </section>
   </main>
 
-  <!-- მარტივი JS გვერდებს შორის გადასასვლელად -->
   <script>
+    // Hero-ს რეალური სიმაღლე ტელეფონებისთვის
+    function setHeroHeight() {
+      const hero = document.getElementById('hero');
+      const vh = window.innerHeight;
+      hero.style.height = `${vh}px`;
+    }
+
+    // პირველად გვერდის ჩატვირთვაზე
+    setHeroHeight();
+
+    // window resize-ზე
+    window.addEventListener('resize', setHeroHeight);
+
+    // გვერდებს შორის გადართვა
     const openBtn = document.getElementById('openInvite');
     const hero = document.getElementById('hero');
     const details = document.getElementById('details');
